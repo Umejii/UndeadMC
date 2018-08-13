@@ -18,7 +18,7 @@ command /sanity [<player>]:
 		set {colour} to "&2"
 		set {UUID} to "%player's uuid%"
 		if arg 1 is a player:
-			set {UUID} to "%%arg 1%'s uuid%"			
+			set {UUID} to "%arg 1's uuid%"			
 		if {sanity::%{UUID}%} is less than 35:
 			set {colour} to "&4"
 		else if {sanity::%{UUID}%} is less than 50:
