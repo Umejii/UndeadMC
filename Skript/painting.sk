@@ -1,6 +1,0 @@
-on break of a painting:
-	event-entity is not a player:
-		cancel event
-on break of an item frame:
-	event-entity is not a player:
-		cancel event
