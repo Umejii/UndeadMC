@@ -1,3 +1,0 @@
-on join:
-	loop all players:
-		set rf max hp of loop-player to 40
