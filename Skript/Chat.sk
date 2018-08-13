@@ -1,0 +1,6 @@
+# Make all chat related skripts in this document.
+
+on chat:
+	replace all "shrug" with "¯\_(ツ)_/¯" in the message
+	replace all "tableflip" with "(╯°□°）╯︵ ┻━┻" in the message
+	replace all "god" with "Umejii" in the message

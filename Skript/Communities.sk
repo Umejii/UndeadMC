@@ -130,5 +130,4 @@ on load:
 	
 command /delairport:
 	trigger:
-		delete {members::Airport}
-		
+		delete {members::Airport}		
