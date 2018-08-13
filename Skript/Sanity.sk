@@ -13,11 +13,11 @@ on death:
 		send "" to attacker
 		
 	
-command /sanity [<player>]:
+command /sanity [<offline player>]:
 	trigger:
 		set {colour} to "&2"
 		set {UUID} to "%player's uuid%"
-		if arg 1 is a player:
+		if arg 1 is an offline player:
 			set {UUID} to "%arg 1's uuid%"			
 		if {sanity::%{UUID}%} is less than 35:
 			set {colour} to "&4"
@@ -34,6 +34,9 @@ command /sanity [<player>]:
 			send "&7Your sanity: %{colour}%%{sanity::%{UUID}%}%%%" to player
 		send "" to player
 on load:
-	set {randomTime} to "%random number between 1600 and 2340% seconds" parsed as timespan
-	wait {randomTime}
-	broadcast "yo"
+	delete {randomTime}
+	wait 1 tick
+	while true:
+		set {randomTime} to "%random number between 1600 and 2340% seconds" parsed as timespan
+		wait {randomTime}
+		broadcast "yo"
