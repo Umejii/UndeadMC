@@ -28,7 +28,10 @@ command /sanity [<player>]:
 		else if {sanity::%player's uuid%} is less than 80:
 			set {colour} to "&a"
 		send "" to player
-		send "&7%{prefix}% sanity: %{colour}%%{sanity::%player's uuid%}%%%" to player
+		if arg 1 is set:
+			send "&7%{prefix}% sanity: %{colour}%%{sanity::%arg 1's uuid%}%%%" to player
+		else:
+			send "&7%{prefix}% sanity: %{colour}%%{sanity::%player's uuid%}%%%" to player
 		send "" to player
 on load:
 	set {randomTime} to "%random number between 1600 and 2340% seconds" parsed as timespan
