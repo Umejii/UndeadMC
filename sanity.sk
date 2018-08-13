@@ -16,19 +16,22 @@ on death:
 command /sanity [<player>]:
 	trigger:
 		set {colour} to "&2"
-		if {sanity::%player's uuid%} is less than 35:
+		set {UUID} to "%player's uuid%"
+		if arg 1 is a player:
+			set {UUID} to "%%arg 1%'s uuid%"			
+		if {sanity::%{UUID}%} is less than 35:
 			set {colour} to "&4"
-		else if {sanity::%player's uuid%} is less than 50:
+		else if {sanity::%{UUID}%} is less than 50:
 			set {colour} to "&c"
-		else if {sanity::%player's uuid%} is less than 65:
+		else if {sanity::%{UUID}%} is less than 65:
 			set {colour} to "&e"
-		else if {sanity::%player's uuid%} is less than 80:
+		else if {sanity::%{UUID}%} is less than 80:
 			set {colour} to "&a"
 		send "" to player
 		if arg 1 is a player:
-			send "&7%arg 1% sanity: %{colour}%%{sanity::%arg 1's uuid%}%%%" to player
+			send "&7%arg 1% sanity: %{colour}%%{sanity::%{UUID}%}%%%" to player
 		else:
-			send "&7Your sanity: %{colour}%%{sanity::%player's uuid%}%%%" to player
+			send "&7Your sanity: %{colour}%%{sanity::%{UUID}%}%%%" to player
 		send "" to player
 on load:
 	set {randomTime} to "%random number between 1600 and 2340% seconds" parsed as timespan
