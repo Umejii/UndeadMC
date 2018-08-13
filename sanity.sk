@@ -15,50 +15,21 @@ on death:
 	
 command /sanity [<player>]:
 	trigger:
-		if arg 1 is set:
-			if arg 1 is a player:
-				if {sanity::%arg 1's uuid%} is less than or equal to 100:
-					send "" to player
-					send "&7%arg 1%'s sanity: &2%{sanity::%arg 1's uuid%}%%%" to player
-					send "" to player
-				if {sanity::%arg 1's uuid%} is less than 80:
-					send "" to player
-					send "&7%arg 1%'s sanity: &a%{sanity::%arg 1's uuid%}%%%" to player
-					send "" to player
-				if {sanity::%arg 1's uuid%} is less than 65:
-					send "" to player
-					send "&7%arg 1%'s sanity: &e%{sanity::%arg 1's uuid%}%%%" to player
-					send "" to player
-				if {sanity::%arg 1's uuid%} is less than 50:
-					send "" to player
-					send "&7%arg 1%'s sanity: &c%{sanity::%arg 1's uuid%}%%%" to player
-					send "" to player
-				if {sanity::%arg 1's uuid%} is less than 35:
-					send "" to player
-					send "&7%arg 1%'s sanity: &4%{sanity::%arg 1's uuid%}%%%" to player
-					send "" to player
-		if arg 1 isn't set:
-			if {sanity::%player's uuid%} is less than or equal to 100:
-				send "" to player
-				send "&7Your sanity: &2%{sanity::%player's uuid%}%%%" to player
-				send "" to player
-			if {sanity::%player's uuid%} is less than 80:
-				send "" to player
-				send "&7Your sanity: &a%{sanity::%player's uuid%}%%%" to player
-				send "" to player
-			if {sanity::%player's uuid%} is less than 65:
-				send "" to player
-				send "&7Your sanity: &e%{sanity::%player's uuid%}%%%" to player
-				send "" to player
-			if {sanity::%player's uuid%} is less than 50:
-				send "" to player
-				send "&7Your sanity: &c%{sanity::%player's uuid%}%%%" to player
-				send "" to player
-			if {sanity::%player's uuid%} is less than 35:
-				send "" to player
-				send "&7Your sanity: &4%{sanity::%player's uuid%}%%%" to player
-				send "" to player
-				
+		set {colour} to "&2"
+		set {prefix} to "Your"
+		if arg 1 is a player:
+			set {prefix} to %arg 1%
+		if {sanity::%player's uuid%} is less than 35:
+			set {colour} to "&4"
+		else if {sanity::%player's uuid%} is less than 50:
+			set {colour} to "&c"
+		else if {sanity::%player's uuid%} is less than 65:
+			set {colour} to "&e"
+		else if {sanity::%player's uuid%} is less than 80:
+			set {colour} to "&a"
+		send "" to player
+		send "&7%{prefix}% sanity: %{colour}%%{sanity::%player's uuid%}%%%" to player
+		send "" to player
 on load:
 	set {randomTime} to "%random number between 1600 and 2340% seconds" parsed as timespan
 	wait {randomTime}
