@@ -4,47 +4,47 @@ command /community:
 		wait 1 tick
 		if {member::Prison::%player%} isn't set:
 			format slot 0 of player with light gray wool named "&2Prison" with lore "&7Click to join this community.||&7Members: &a%{members::Prison}%" to close then run [make player execute command "/cjoin Prison"]
-		if {member::Prison::%player%} is set:
+		else:
 			format slot 0 of player with light green wool named "&2Prison" with lore "&7You are in this community.||&7Members: &a%{members::Prison}%" to close
 		if {member::Farm::%player%} isn't set:
 			format slot 1 of player with light gray wool named "&2Farm" with lore "&7Click to join this community.||&7Members: &a%{members::Farm}%" to close then run [make player execute command "/cjoin Farm"]
-		if {member::Farm::%player%} is set:
+		else:
 			format slot 1 of player with light green wool named "&2Farm" with lore "&7You are in this community.||&7Members: &a%{members::Farm}%" to close
 		if {member::Nard::%player%} isn't set:
 			format slot 2 of player with light gray wool named "&2Nard" with lore "&7Click to join this community.||&7Members: &a%{members::Nard}%" to close then run [make player execute command "/cjoin Nard"]
-		if {member::Nard::%player%} is set:
+		else:
 			format slot 2 of player with light green wool named "&2Nard" with lore "&7You are in this community.||&7Members: &a%{members::Nard}%" to close
 		if {member::NewGayle::%player%} isn't set:
 			format slot 3 of player with light gray wool named "&2New Gayle" with lore "&7Click to join this community.||&7Members: &a%{members::NewGayle}%" to close then run [make player execute command "/cjoin NewGayle"]
-		if {member::NewGayle::%player%} is set:
+		else:
 			format slot 3 of player with light green wool named "&2New Gayle" with lore "&7You are in this community.||&7Members: &a%{members::NewGayle}%" to close
 		if {member::School::%player%} isn't set:		
 			format slot 4 of player with light gray wool named "&2School" with lore "&7Click to join this community.||&7Members: &a%{members::School}%" to close then run [make player execute command "/cjoin School"]
-		if {member::School::%player%} is set:		
+		else:		
 			format slot 4 of player with light green wool named "&2School" with lore "&7You are in this community.||&7Members: &a%{members::School}%" to close	
 		if {member::NPP::%player%} isn't set:		
 			format slot 5 of player with light gray wool named "&2Nuclear Power Plant" with lore "&7Click to join this community.||&7Members: &a%{members::NPP}%" to close then run [make player execute command "/cjoin NPP"]
-		if {member::NPP::%player%} is set:		
+		else:		
 			format slot 5 of player with light green wool named "&2Nuclear Power Plant" with lore "&7You are in this community.||&7Members: &a%{members::NPP}%" to close	
 		if {member::Airport::%player%} isn't set:		
 			format slot 6 of player with light gray wool named "&2Airport" with lore "&7Click to join this community.||&7Members: &a%{members::Airport}%" to close then run [make player execute command "/cjoin Airport"]
-		if {member::Airport::%player%} is set:		
+		else:		
 			format slot 6 of player with light green wool named "&2Airport" with lore "&7You are in this community.||&7Members: &a%{members::Airport}%" to close	
 		if {member::Junkyard::%player%} isn't set:		
 			format slot 7 of player with light gray wool named "&2Junkyard" with lore "&7Click to join this community.||&7Members: &a%{members::Junkyard}%" to close then run [make player execute command "/cjoin Junkyard"]
-		if {member::Junkyard::%player%} is set:		
+		else:		
 			format slot 7 of player with light green wool named "&2Junkyard" with lore "&7You are in this community.||&7Members: &a%{members::Junkyard}%" to close
 		if {member::Hospital::%player%} isn't set:		
 			format slot 8 of player with light gray wool named "&2Hospital" with lore "&7Click to join this community.||&7Members: &a%{members::Hospital}%" to close then run [make player execute command "/cjoin Hospital"]
-		if {member::Hospital::%player%} is set:		
+		else:		
 			format slot 8 of player with light green wool named "&2Hospital" with lore "&7You are in this community.||&7Members: &a%{members::Hospital}%" to close		
 		if {member::MFN::%player%} isn't set:		
 			format slot 9 of player with light gray wool named "&2Medical Facility of Nard" with lore "&7Click to join this community.||&7Members: &a%{members::MFN}%" to close then run [make player execute command "/cjoin MFN"]
-		if {member::MFN::%player%} is set:		
+		else:		
 			format slot 9 of player with light green wool named "&2Medical Facility of Nard" with lore "&7You are in this community.||&7Members: &a%{members::MFN}%" to close		
 		if {member::MilitaryBase::%player%} isn't set:		
 			format slot 10 of player with light gray wool named "&2Military Base" with lore "&7Click to join this community.||&7Members: &a%{members::MilitaryBase}%" to close then run [make player execute command "/cjoin MilitaryBase"]
-		if {member::MilitaryBase::%player%} is set:		
+		else:		
 			format slot 10 of player with light green wool named "&2Military Base" with lore "&7You are in this community.||&7Members: &a%{members::MilitaryBase}%" to close		
 		if {user::isInCommunity::%player%} is set:
 			if {member::Prison::%player%} is set:	
@@ -80,7 +80,7 @@ command /cjoin <text>:
 				send "&7You have joined &a%arg-1%&7!" to player
 				set {member::%arg 1%::%player%} to true
 				set {user::isInCommunity::%player%} to true
-		if arg 1 is not "Prison", "Farm", "Nard", "NewGayle", "School", "NPP", "Airport", "Junkyard", "Hospital", "MFN" or "MilitaryBase":		
+		else:		
 			send "&cError: %arg 1%&7 is not a valid community."
 			
 command /cleave <text>:
@@ -93,7 +93,7 @@ command /cleave <text>:
 		else:
 			if arg 1 is not "Prison", "Farm", "Nard", "NewGayle", "School", "NPP", "Airport", "Junkyard", "Hospital", "MFN" or "MilitaryBase":
 				send "&cError: %arg 1%&7 is not a valid community."
-			if arg 1 is "Prison", "Farm", "Nard", "NewGayle", "School", "NPP", "Airport", "Junkyard", "Hospital", "MFN" or "MilitaryBase":
+			else:
 				send "&cError: &7You are not in this community." to player
 
 command /resetcommunity <text>:
