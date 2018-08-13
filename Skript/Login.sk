@@ -1,0 +1,46 @@
+on connect:
+  if {whitelist} is true:
+    kick the player due to "&8[&cUndeadMC&8] &7You have been kicked from the &cApocalypse&7 server because the server is currently under development."    
+
+on quit:
+    set quit message to "&8(&4-&8) &c%player% &7has left the server."
+	
+on join:
+	set join message to "&8(&2+&8) &a%player% &7has joined the server."
+
+on first join:
+	if {logins} is not set:
+		set {logins} to 0
+	add 1 to {logins}
+	set join message to "&6&l** &e%player% &7has joined for the first time! (%{logins}%) &6&l**"
+	
+command /skr:
+	trigger:
+		execute console command "/skript reload all"
+		send "&bSkripts successfully reloaded!" to player
+	
+command /setmotd <text>:
+	permission: skript.setmotd
+	description: Sets message of the day
+	trigger:
+		message "Set the MOTD to '%argument%<reset>'"
+		set {motd} to argument
+
+command /showmotd:
+	description: Displays the message of the day
+	trigger:
+		message {motd}
+
+on join:
+	wait a tick
+	message ""
+	message "&8&m-------------------[&r  &c&lUndeadMC  &8&m]-------------------"
+	message ""
+	message "                          &7Welcome to &c&lUndeadMC&7, %player%."
+	message ""
+	message "                     &6&lDISCORD &8&l|&7 https://discord.gg/VNvFGXT "
+	message "                     &6&lWEBSITE &8&l|&7 https://www.undeadmc.com "
+	message "                     &6&lWEBSTORE &8&l|&7 https://buy.undeadmc.com "
+	message ""
+	message "&8&m-------------------[&r  &c&lUndeadMC  &8&m]-------------------"
+	message ""

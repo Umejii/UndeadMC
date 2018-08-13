@@ -1,0 +1,3 @@
+command /rank <player> <text>:
+	trigger:
+		make player execute "/pex user %arg 1% group set %arg 2%"

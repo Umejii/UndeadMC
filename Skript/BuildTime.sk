@@ -1,0 +1,48 @@
+command /playerinfo [<offline player>]:
+	trigger:
+		if arg 1 is set:
+			open chest with 2 rows named "&c%arg 1%'s Information" to player
+			wait 1 tick
+			format slot 4 of player with skull of ("%arg 1%" parsed as an offline player) named "&6%arg 1%" with lore "&7Below are some of the statistics of %arg 1%." to be unstealable
+			format slot 9 of player with white wool named "&aACTIVE ONLINE TIME" with lore "&7%{hour::%arg 1%}% hours %{minute::%arg 1%}% minutes" to be unstealable
+		else:
+			open chest with 2 rows named "&cYour Information" to player
+			format slot 4 of player with skull of ("%player%" parsed as an offline player) named "&6%player%" with lore "&7Below are some of your statistics." to be unstealable
+			format slot 9 of player with white wool named "&aACTIVE ONLINE TIME" with lore "&7%{hour::%player%}% hours %{minute::%player%}% minutes" to be unstealable
+			format slot 10 of player with red wool named "&cINACTIVE ONLINE TIME" with lore "" to be unstealable	
+
+options:
+	command: buildtime											
+	permission: playtime.use									
+	prefix: &6[Buildtime]									
+
+variables:
+	{second::%player%} = 0
+	{minute::%player%} = 0
+	{hour::%player%} = 0
+
+every second:
+	loop all players:
+		add 1 to {second::%loop-player%}
+		if {second::%loop-player%} is 60:
+			subtract 60 from {second::%loop-player%}
+			add 1 to {minute::%loop-player%}
+		if {minute::%loop-player%} is 60:
+			subtract 60 from {minute::%loop-player%}
+			add 1 to {hour::%loop-player%}
+			
+command /{@command} [<offline player>]:
+	permission: {@permission}
+	trigger:
+		if arg 1 is not set:
+			send "{@prefix} &7Your build time is %{hour::%player%}% hours %{minute::%player%}% minutes"
+			stop
+		else:
+			if {days.%arg 1%} is not set:
+				set {days.%arg 1%} to 0
+			if {hour::%arg 1%} is not set:
+				set {hour::%arg 1%} to 0
+			if {minute::%arg 1%} is not set:
+				set {minute::%arg 1%} to 0
+				send "{@prefix} &e%arg 1%&7's build time is %{hour::%arg 1%}% hours %{minute::%arg 1%}% minutes"
+				stop
