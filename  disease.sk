@@ -1,0 +1,68 @@
+on damage of player:
+	{infection::%victim's UUID%} isn't set
+	attacker is a zombie
+	chance of 10%:
+		set {infection::%victim's UUID%} to true
+		send "&cYou have been infected!" to victim
+		apply hunger to victim for 9999 days
+		apply slowness 2 to victim for 9999 days
+		apply blindness to victim for 9999 days
+
+every 3 seconds:
+	loop all players where [{infection::%input's UUID%} is true]:
+		show action bar with "&cYou are infected!" to loop-player
+		
+every 10 seconds:
+    loop all players where [{infection::%input's UUID%} is true]:
+        damage loop-player by 4
+
+on death of player:
+	send "&cYou have died. Your body has rotted and you have turned into a walker." to victim
+	wait 1 tick
+	spawn zombie at victim's location
+	set display name of last spawned entity to "%victim%'s corpse"
+	if {infection::%victim's UUID%} is set:
+		if attacker is not a zombie or a player:
+			broadcast "&8%victim%&7 died of their infection."
+			delete {infection::%victim's UUID%}
+		else:
+			broadcast "&8%victim%&7 has died."
+			delete {infection::%victim's UUID%}
+	else:
+		broadcast "&8%victim%&7 has died."
+		delete {infection::%victim's UUID%}
+
+on death of player:
+	clear inventory of player
+	
+on death of monster:
+    clear drops
+	
+	
+command /ownercure <player>:
+	trigger:
+		delete {infection::%arg 1's UUID%}
+		send "&2You have been cured." to arg 1
+		remove all potion effects from arg 1
+		
+on right click holding blaze powder:
+	loop all players where [{infection::%input's UUID%} isn't set]:
+		send "&7You are not infected." to player
+	wait 1 tick
+	loop all players where [{infection::%input's UUID%} is true]:
+		delete {infection::%player's UUID%}
+		send "&2You have been cured." to player
+		remove all potion effects from player
+		remove 1 of event-item from the player
+		
+command /eek:
+	trigger:
+		broadcast "%player% has eek'd!"
+			
+command /infect <player>:
+	trigger:
+		set {infection::%arg 1's UUID%} to true
+		send "&cYou have been infected!" to arg 1
+		apply hunger to arg 1 for 9999 days
+		apply slowness 2 to arg 1 for 9999 days
+		apply blindness to arg 1 for 9999 days
