@@ -17,6 +17,7 @@ on first join:
 command /skr:
 	trigger:
 		execute console command "/skript reload all"
+		send "&bSkripts successfully reloaded!" to player
 	
 command /setmotd <text>:
 	permission: skript.setmotd
