@@ -1,0 +1,79 @@
+# Prevent mycelium from turning into dirt
+
+on fade of mycelium:
+	cancel event
+
+
+# Set package rewards tp
+on load:
+	set {wait} to "1 second" parsed as timespan
+	set {1w1} to "Desert_Eagle"
+	set {1aw1} to "Desert Eagle"
+	set {1w2} to "Type95_CSP"
+	set {1aw2} to "Type95"
+	set {1w3} to "Python_CSP"
+	set {1aw3} to "Python"
+	set {1sp1} to "Grenade_CSP"
+	set {1asp1} to "Grenade"
+	set {1sp2} to "Flashbang_CSP"
+	set {1asp2} to "Flashbang"
+	set {1sp3} to "Putty_CSP"
+	set {1asp3} to "Putty"
+	set {2w1} to "Hunting_CSP"
+	set {2aw1} to "Hunting"
+	set {2w2} to "AK-47_CSP"
+	set {2aw2} to "AK-47"
+	set {2sp1} to "Cocopops_CSP"
+	set {2asp1} to "Cocopops"
+	set {2sp2} to "C4"
+	set {2asp2} to "C4 &8(x2)"
+	set {3w1} to "Bazooka_CSP"
+	set {3aw1} to "RPG"
+	set {3w2} to "Carbine_CSP"
+	set {3aw2} to "Carbine"
+	set {nothing} to "&7The crate was empty."
+	set {cP} to "&6+ &7"
+
+# The right-click event & Chances
+
+on rightclick on mycelium:
+	set event-block to air
+	chance of 40%:
+		set {_unlucky} to true
+		send "%{nothing}%" to player
+		wait {wait}
+		set event-block to mycelium
+		stop
+	if {_unlucky} isn't set:
+		set {_i} to random integer from 1 to 100
+		if {_i} is between 1 and 45:
+			set {_wN} to random integer between 1 and 3
+			set {_TYPE} to a random integer between 1 and 2
+			if {_TYPE} is 1:
+				execute console command "shot give %player% %{1w%{_wN}%}%"
+				send "%{cP}% %{1aw%{_wN}%}%" to player
+			else if {_TYPE} is 2:
+				execute console command "shot give %player% %{1sp%{_wN}%}%"
+				send "%{cP}% %{1asp%{_wN}%}%" to player
+		else if {_i} is between 46 and 70:
+			set {_wN} to random integer between 1 and 3
+			execute console command "shot give %player% %{1w%{_wN}%}%"
+			execute console command "shot give %player% %{1sp%{_wN}%}%"
+			send "%{cP}% %{1aw%{_wN}%}%" to player
+			send "%{cP}% %{1asp%{_wN}%}%" to player
+		else if {_i} is between 71 and 90:
+			set {_wN} to random integer between 1 and 2
+			set {_TYPE} to a random integer between 1 and 2
+			if {_TYPE} is 1:
+				execute console command "shot give %player% %{2w%{_wN}%}%"
+				send "%{cP}% %{2aw%{_wN}%}%" to player
+			else if {_TYPE is 2}:
+				execute console command "shot give %player% %{2sp%{_wN}%}% 2"
+				send "%{cP}% %{2asp%{_wN}%}%" to player
+		else if {_i} is between 91 and 100:
+			set {_wN} to random integer between 1 and 2
+			execute console command "shot give %player% %{3w%{_wN}%}%"
+			send "%{cP}% %{3aw%{_wN}%}%" to player
+	wait {wait}
+	set event-block to mycelium
+	stop
