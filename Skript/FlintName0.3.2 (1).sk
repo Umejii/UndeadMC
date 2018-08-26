@@ -15,4 +15,4 @@ command /relore [<integer=1>] [<text="">]:
   trigger:
     if arg-2 is set:
       set line arg-1 of the lore of player's tool to "&d&o%colored arg-2%"
-      send "&6&lFlint&e&lName&7&l> &fY
+      send "&6&lFlint&e&lName&7&l> &fYour items lore has been changed to &r%colored arg-2%&r."
