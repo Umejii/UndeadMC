@@ -34,9 +34,12 @@ command /sanity [<offline player>]:
 			send "&7Your sanity: %{colour}%%{sanity::%{UUID}%}%%%" to player
 		send "" to player
 on load:
-	delete {randomTime}
+	set {_randomTime::*} to "%random number between 1 and 3% seconds" parsed as timespan
 	wait 1 tick
-	while true:
-		set {randomTime} to "%random number between 1600 and 2340% seconds" parsed as timespan
-		wait {randomTime}
-		broadcast "yo"
+	loop all players:
+		while {sanity::%loop-player's uuid%} is less than 50:
+			wait {_randomTime::%loop-player's uuid%}
+			send "your sanity is below 50%%. awh." to loop-player
+		while {sanity::%loop-player's uuid%} is more than 50:
+			wait {_randomTime::%loop-player's uuid%}
+			send "your sanity is above 50%%. wooh!" to loop-player
