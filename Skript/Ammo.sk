@@ -1,0 +1,19 @@
+command /gunammo <text>:
+  trigger:
+    if arg 1 is "AssaultRifle":
+      give player 64 of iron ingot named "&eAmmo &7(Assault Rifle)"
+    else if arg 1 is "Carbine":
+      give player 64 of brick named "&eAmmo &7(Carbine)"
+    else if arg 1 is "RPG":
+      give player 64 of flint named "&eAmmo &7(RPG)"
+    else if arg 1 is "MachineGun":
+      give player 64 of coal named "&eAmmo &7(Machine Gun)"
+    else if arg 1 is "Shotgun":
+      give player 64 of gold ingot named "&eAmmo &7(Shotgun)"
+    else if arg 1 is "Revolver":
+      give player 64 of seeds named "&eAmmo &7(Revolver)"
+    else if arg 1 is "SniperRifle":
+      give player 64 of gold nugget named "&eAmmo &7(Sniper Rifle)"
+    else if arg 1 is "Semi-Automatic-Pistol":
+      give player 64 of sugar cane named "&eAmmo &7(Semi-Automatic Pistol)"
+    send "&eYou have received &664&e of &6%arg 1%&e!"
