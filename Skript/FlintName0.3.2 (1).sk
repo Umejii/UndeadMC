@@ -1,0 +1,18 @@
+command /rename <text>:
+	description: Renames the item in your inventory slot.
+	usage: /rename <name>
+	permission: FlintName.rename
+	permission message: &cYou do not have permission to this command.
+	trigger:
+		if arg-1 is set:
+			set the name of player's tool to "&r%colored arg-1%"
+			send "&6&lFlint&e&lName&7&l> &fYour items name has been changed to &r%colored arg-1%&r."
+
+command /relore [<integer=1>] [<text="">]:
+  aliases: lore
+  permission: FlintName.lore
+  permission message: &6&lFlint&e&lName&7&l> &fYou dont have access to this command.
+  trigger:
+    if arg-2 is set:
+      set line arg-1 of the lore of player's tool to "&d&o%colored arg-2%"
+      send "&6&lFlint&e&lName&7&l> &fY
